@@ -97,6 +97,20 @@ async function run() {
       res.send(result);
     });
 
+    app.delete("/bookings/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: ObjectId(id) };
+      const result = await bookingsCollection.deleteOne(filter);
+      res.send(result);
+    });
+
+    app.delete("/addedproducts/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: ObjectId(id) };
+      const result = await addedproductsCollection.deleteOne(filter);
+      res.send(result);
+    });
+
     app.post("/users", async (req, res) => {
       const user = req.body;
       const result = await usersCollections.insertOne(user);
